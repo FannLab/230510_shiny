@@ -14,8 +14,10 @@ library(pROC)
 library(jpeg)
 library(waiter)
 library(shinyvalidate)
-use_python("C:/Users/cs210/anaconda3/python.exe")
-source_python("script/train_val_test.py")
+python_file <- file.path("C:","Users","cs210","anaconda3","python.exe")
+script_file <- file.path('script','train_val_test.py')
+use_python(python_file)
+source_python(script_file)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -88,14 +90,14 @@ server <- function(input, output) {
     }})
   
   # iv$enable()
-  demo_Z <- fread('demo/demo_1.txt')
+  demo_Z <- fread(file.path('demo','demo_1.txt'))
   output$Z <- renderDataTable({
     
     demo_Z
   })
   
   output$downloadData <- downloadHandler(
-    filename = 'demo.txt',
+    filename = file.path('demo','demo_1.txt'),
     content = function(file) {
       # Write the dataset to the `file` that will be downloaded
       write.csv(demo_Z, file)
@@ -104,7 +106,7 @@ server <- function(input, output) {
   output$plot2 <- renderImage({
 
 
-    list(src = 'demo/data_format.png', width = "100%")
+    list(src = file.path('demo','data_format.png'), width = "100%")
   }, deleteFile = FALSE)
   # output$plot2 <- renderUI({
   #   
@@ -116,7 +118,7 @@ server <- function(input, output) {
   observeEvent(input$action,{
     
     if(is.null(input$Z_file)){
-      roc_file <- 'demo/fig/demo_1_roc.jpeg'
+      roc_file <- file.path('demo','fig','demo_1_roc.jpeg')
     }else{
       iv$enable()
       req(input$name)
@@ -127,17 +129,20 @@ server <- function(input, output) {
       # )
       
       name <- strsplit(input$name,"@")[[1]][1]
-      Z_file <- paste0('temp/',name,'/data/',name,'_Z.txt')
-      sample_file <- paste0('temp/',name,'/data/',name,'_sample.txt')
-      train_file <- paste0('temp/',name,'/data/',name,'_train_sample.txt')
-      test_file <- paste0('temp/',name,'/data/',name,'_test_sample.txt')
-      val_file <- paste0('temp/',name,'/data/',name,'_val_sample.txt')
-      out_file <- paste0('temp/',name,'/fig/',name)
-      roc_file <- paste0('temp/',name,'/fig/',name,'_roc.jpeg')
-      dir.create(paste0('temp/',name,'/data/'), recursive = TRUE)
-      dir.create(paste0('temp/',name,'/fig/'), recursive = TRUE)
-  
-      write.table(input$name,paste0('temp/',name,'/email.txt'))
+      Z_file <- file.path('temp',name,'data',paste0(name,'_Z.txt'))
+      sample_file <- file.path('temp',name,'data',paste0(name,'_sample.txt'))
+      train_file <- file.path('temp',name,'data',paste0(name,'_train_sample.txt'))
+      test_file <- file.path('temp',name,'data',paste0(name,'_test_sample.txt'))
+      val_file <- file.path('temp',name,'data',paste0(name,'_val_sample.txt'))
+      out_file <- file.path('temp',name,'fig',name)
+      roc_file <- file.path('temp',name,'fig',paste0(name,'_roc.jpeg'))
+      model_file <- file.path('temp',name,'model')
+      log_file <- file.path('temp',name,'log','log.txt')
+      dir.create(file.path('temp',name,'data'), recursive = TRUE,showWarnings = FALSE)
+      dir.create(file.path('temp',name,'fig'), recursive = TRUE,showWarnings = FALSE)
+      dir.create(file.path('temp',name,'model'), recursive = TRUE,showWarnings = FALSE)
+      dir.create(file.path('temp',name,'log'), recursive = TRUE,showWarnings = FALSE)
+      write.table(input$name,file.path('temp',name,'email.txt'))
 
 
 
