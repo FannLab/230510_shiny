@@ -66,5 +66,10 @@ Change it to:
 script_file <- file.path('script_gpu','train_val_test.py')
 ```
 
-
 ### Citation
+
+Jhang, Y. J., Chu, Y. C., Tai, T. M., Hwang, W. J., Cheng, P. W., & Lee, C. K. (2019, July). Sensor based dynamic hand gesture recognition by PairNet. In _2019 International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData)_ (pp. 994-1001). IEEE.
+https://ieeexplore.ieee.org/document/8875280
+
+筠婕張. (2018). _Continuous Hand Gesture Recognition Based on PairNet_ (Doctoral dissertation, National Taiwan Normal University (Taiwan)).
+https://www.proquest.com/docview/2374201673?pq-origsite=gscholar&fromopenview=true
