@@ -29,14 +29,12 @@ This Shiny program utilizes both R and Python, so please ensure that the user's 
 And the Python packages used are:
 
 * torch
-* math
 * pandas
 * numpy
 * matplotlib
 * sklearn
-* tqdm.auto
-* copy
-* re
+* tqdm
+
 
 Please note that some packages may already be pre-installed in the system. Please check if any of these packages are missing and install them if necessary.
 

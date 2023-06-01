@@ -24,7 +24,7 @@ ui <- fluidPage(
   waiter::use_waiter(),
   waiterOnBusy(),
   # Application title
-  titlePanel("PairNet"),
+  titlePanel("PairNet PRS superlearner"),
   
   
   sidebarLayout(
